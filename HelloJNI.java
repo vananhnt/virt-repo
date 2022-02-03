@@ -18,7 +18,7 @@ public class HelloJNI {
 }
     public static void main(String[] args) {
     	(new HelloJNI()).test(2, 4);
-    }
+	 }
 }
 
 
