@@ -5,6 +5,7 @@
 
 
 void DoSayHello(const std::string &name);
+int DoIncr(const int);
 
 
 #endif//_HELLO_JNI_IMPL_H
