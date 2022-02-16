@@ -65,10 +65,10 @@ shared_ptr<const char> ToStringPtr(JNIEnv *env, jstring jstr)
 
 /*
  * Class:     HelloJNI
- * Method:    sayHello
+ * Method:    print
  * Signature: (Ljava/lang/String;)V
  */
-JNIEXPORT void JNICALL Java_HelloJNI_sayHello  (JNIEnv *env, jobject thisObj, jstring arg)
+JNIEXPORT void JNICALL Java_HelloJNI_print (JNIEnv *env, jobject thisObj, jstring arg)
 {
     DoSayHello(ToString(env, arg));
 
@@ -76,6 +76,13 @@ JNIEXPORT void JNICALL Java_HelloJNI_sayHello  (JNIEnv *env, jobject thisObj, js
     //DoSayHello(name);
 }
 
+JNIEXPORT int JNICALL Java_HelloJNI_incr (JNIEnv *env, jobject thisObj, jint arg) {
+	return DoIncr(arg);
+}
+
+int DoIncr(const int x) {
+	return x+1;
+}
 
 void DoSayHello(const string &name)
 {
