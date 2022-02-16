@@ -6,6 +6,6 @@ javac -g HelloJNI.java
 
 javah HelloJNI
 
-g++ -std=c++11 -shared -fPIC -I$JAVA_INC -I$JAVA_INC/linux HelloJNIImpl.cpp -marm -o libhello.so
+g++ -std=c++11 -shared -fPIC -I$JAVA_INC -I$JAVA_INC/linux HelloJNIImpl.cpp -o libhello.so
 
 java -Djava.library.path=. HelloJNI
