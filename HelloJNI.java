@@ -12,10 +12,11 @@ public class HelloJNI {
     public void test(int x, int y) {
     	if (x >= 0 && x > y && y == Math.pow(x,2.0)) {
 			x = incr(x);
-    		
+    			x = x+1;
 		}
 		else {
 			y = incr(y);
+			x = x+2;
 			
 		}
     	 	
