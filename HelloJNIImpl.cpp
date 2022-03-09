@@ -81,7 +81,12 @@ JNIEXPORT int JNICALL Java_HelloJNI_incr (JNIEnv *env, jobject thisObj, jint arg
 }
 
 int DoIncr(const int x) {
-	return x+1;
+	if (x % 2 == 0) {
+		return x+1;
+	} else {
+		return x+2;
+	}
+	
 }
 
 void DoSayHello(const string &name)
