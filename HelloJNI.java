@@ -10,16 +10,17 @@ public class HelloJNI {
     private native int incr(int x);
     
     public void test(int x, int y) {
-    	if (x >= 0 && x > y && y == Math.pow(x,2.0)) {
+    	int tmp = 0;
+    	tmp = 2*y;
+    	if (x >= 0 && x > y && tmp > x+2) {
 			x = incr(x);
-    			x = x+1;
+    		x = x+1;
 		}
 		else {
 			y = incr(y);
 			x = x+2;
 			
 		}
-    	 	
 		}
     public static void main(String[] args) {
     	(new HelloJNI()).test(2, 4);
