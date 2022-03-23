@@ -2,6 +2,7 @@
 @using=jpf-symbc
 
 target=HelloJNI
+#classpath=/home/va/eclipse-workspace/JNIExample/bin
 classpath=/home/va/eclipse-workspace/JNIExample/src
 native_classpath=/home/va/git/jpf-nhandler/lib
 sourcepath=/home/va/eclipse-workspace/JNIExample/src
@@ -13,8 +14,8 @@ symbolic.dp=choco
 #vm.storage.class=nil
 
 
-search.properties=\
-gov.nasa.jpf.vm.NoUncaughtExceptionsProperty
+#search.properties=\
+#gov.nasa.jpf.vm.NoUncaughtExceptionsProperty
 
 ############################### 4. Listener part #############################
 listener = .symbc.TestListener

@@ -9,7 +9,7 @@ public class HelloJNI {
     
     private native int incr(int x);
     
-    public void test(int x, int y) {
+    public int test(int x, int y) {
     	int tmp = 0;
     	tmp = 2*y;
     	if (x >= 0 && x > y && tmp > x+2) {
@@ -18,9 +18,12 @@ public class HelloJNI {
 		}
 		else {
 			y = incr(y);
-			x = x+2;
-			
+			x = x+y;
 		}
+		if (x > y) {
+			x = 20;
+		}
+		return x;
 		}
     public static void main(String[] args) {
     	(new HelloJNI()).test(2, 4);
