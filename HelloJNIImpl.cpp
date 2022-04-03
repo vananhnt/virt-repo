@@ -76,10 +76,6 @@ JNIEXPORT void JNICALL Java_HelloJNI_print (JNIEnv *env, jobject thisObj, jstrin
     //DoSayHello(name);
 }
 
-JNIEXPORT String JNICALL Java_HelloJNI_concat(JNIEnv *env, jobject thisObj, jstring x, jstring y) {
-    DoConcat(x, y);
-}
-
 JNIEXPORT int JNICALL Java_HelloJNI_incr (JNIEnv *env, jobject thisObj, jint arg) {
 	return DoIncr(arg);
 }
@@ -91,10 +87,6 @@ int DoIncr(const int x) {
 		return x+1;
 	}
 	
-}
-
-string DoConcat(const string &a, const string &b) {
-    return a + b;
 }
 
 void DoSayHello(const string &name)
