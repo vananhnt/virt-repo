@@ -5,6 +5,7 @@ public class HelloJNI {
         System.loadLibrary("hello");    // loads libhello.so
     }
 
+    private native String concat(String a, String b);
     private native void print(String name);
     
     private native int incr(int x);
@@ -20,11 +21,15 @@ public class HelloJNI {
 			y = incr(y);
 			x = x+y;
 		}
-		if (x > y) {
-			x = 20;
+		if (x + y <15) {
+			x = x + 20;
 		}
+		String result = concat("Con", "cat");
+		x = x + result.length();
+		print("Name");
 		return x;
 		}
+
     public static void main(String[] args) {
     	(new HelloJNI()).test(2, 4);
     }
