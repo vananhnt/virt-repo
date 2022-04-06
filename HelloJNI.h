@@ -10,9 +10,9 @@ extern "C" {
 /*
  * Class:     HelloJNI
  * Method:    print
- * Signature: (Ljava/lang/String;)V
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
  */
-JNIEXPORT void JNICALL Java_HelloJNI_print
+JNIEXPORT jstring JNICALL Java_HelloJNI_print
   (JNIEnv *, jobject, jstring);
 
 /*

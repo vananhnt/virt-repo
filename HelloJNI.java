@@ -6,7 +6,7 @@ public class HelloJNI {
     }
 
     
-    private native void print(String name);
+    private native String print(String name);
     
     private native int incr(int x);
     
@@ -26,7 +26,7 @@ public class HelloJNI {
 		}
 		String result = "The message";
 		x = x + result.length();
-		print("Name");
+		String str = print("Name");
 		return x;
 		}
 

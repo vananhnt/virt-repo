@@ -68,11 +68,10 @@ shared_ptr<const char> ToStringPtr(JNIEnv *env, jstring jstr)
  * Method:    print
  * Signature: (Ljava/lang/String;)V
  */
-JNIEXPORT void JNICALL Java_HelloJNI_print (JNIEnv *env, jobject thisObj, jstring arg)
+JNIEXPORT jstring JNICALL Java_HelloJNI_print (JNIEnv *env, jobject thisObj, jstring arg)
 {
-    DoSayHello(ToString(env, arg));
-
-    //const string name = ToStringPtr(env, arg).get();
+	//DoSayHello(ToString(env, arg));
+	return env->NewStringUTF("Hello from JNI !Compiled with ABI");
     //DoSayHello(name);
 }
 
