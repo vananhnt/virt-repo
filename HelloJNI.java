@@ -5,11 +5,21 @@ public class HelloJNI {
         System.loadLibrary("hello");    // loads libhello.so
     }
 
-    
+    private native String addStr(String str);    
+
     private native String print(String name);
     
     private native int incr(int x);
     
+    public int foo(String s) {
+	int len = s.length();
+	int res = 0;
+	if (len > 0) {
+		s = addStr(s);
+	}
+	return s.length();
+	}
+
     public int test(int x, int y) {
     	int tmp = 0;
     	tmp = 2*y;
@@ -32,6 +42,7 @@ public class HelloJNI {
 
     public static void main(String[] args) {
     	(new HelloJNI()).test(2, 4);
+	(new HelloJNI()).foo("Hello mesg");
     }
 }
 

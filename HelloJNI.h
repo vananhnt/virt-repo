@@ -9,6 +9,14 @@ extern "C" {
 #endif
 /*
  * Class:     HelloJNI
+ * Method:    addStr
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_HelloJNI_addStr
+  (JNIEnv *, jobject, jstring);
+
+/*
+ * Class:     HelloJNI
  * Method:    print
  * Signature: (Ljava/lang/String;)Ljava/lang/String;
  */
