@@ -42,7 +42,7 @@ public class HelloJNI {
 
     public static void main(String[] args) {
     	(new HelloJNI()).test(2, 4);
-	(new HelloJNI()).foo("Hello mesg");
+	System.out.println((new HelloJNI()).foo("Hello mesg"));
     }
 }
 

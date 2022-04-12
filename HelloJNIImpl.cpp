@@ -65,9 +65,10 @@ shared_ptr<const char> ToStringPtr(JNIEnv *env, jstring jstr)
 JNIEXPORT jstring JNICALL Java_HelloJNI_addStr (JNIEnv *env, jobject thisObj, jstring arg)
 {
     const char *name = env->GetStringUTFChars(arg, NULL);
-    env->ReleaseStringUTFChars(arg, name);            
+    //env->ReleaseStringUTFChars(arg, name);            
     jstring result;
     result = env->NewStringUTF(name); 
+    env->ReleaseStringUTFChars(arg, name);
     return result;            	
 
 }
