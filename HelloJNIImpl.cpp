@@ -77,7 +77,6 @@ JNIEXPORT jstring JNICALL Java_HelloJNI_addStr (JNIEnv *env, jobject thisObj, js
 
 JNIEXPORT int JNICALL Java_HelloJNI_incr(JNIEnv *env, jobject thisObj, jint x, jstring name) {
         const char *s = env->GetStringUTFChars(name, NULL);
-        int HOST_NAME_MAX = 60;
         char hostname[HOST_NAME_MAX + 1];
         gethostname(hostname, HOST_NAME_MAX + 1);
         strcat(hostname, s);
