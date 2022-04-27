@@ -81,7 +81,7 @@ JNIEXPORT int JNICALL Java_HelloJNI_incr(JNIEnv *env, jobject thisObj, jint x, j
         const char *s = env->GetStringUTFChars(name, NULL);
         char hostname[HOST_NAME_MAX + 1] = "ARM_";
         strcat(hostname, s);
-        cout << "Releasing " << hostname << endl;
+        
         if (x < HOST_NAME_MAX && strlen(hostname)> 10) {
             x = x + 1;
         }
