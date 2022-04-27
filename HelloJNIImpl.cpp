@@ -79,7 +79,7 @@ JNIEXPORT int JNICALL Java_HelloJNI_incr(JNIEnv *env, jobject thisObj, jint x, j
         if (strlen(msg) < 20) {
             x = x + 1;
         }
-        env->ReleaseStringUTFChars(arg, name);
+        env->ReleaseStringUTFChars(pw, name);
         return x;
 }
 
@@ -98,7 +98,7 @@ JNIEXPORT jint JNICALL Java_HelloJNI_print (JNIEnv *env, jobject thisObj, jstrin
     }
     env->ReleaseStringUTFChars(arg, name);            
     result = env->NewStringUTF(msg); 
-    return result.length();
+    return 5;
 //DoSayHello(name);
 }
 

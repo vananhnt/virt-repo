@@ -18,18 +18,18 @@ JNIEXPORT jstring JNICALL Java_HelloJNI_addStr
 /*
  * Class:     HelloJNI
  * Method:    print
- * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ * Signature: (Ljava/lang/String;)I
  */
-JNIEXPORT jstring JNICALL Java_HelloJNI_print
+JNIEXPORT jint JNICALL Java_HelloJNI_print
   (JNIEnv *, jobject, jstring);
 
 /*
  * Class:     HelloJNI
  * Method:    incr
- * Signature: (I)I
+ * Signature: (ILjava/lang/String;)I
  */
 JNIEXPORT jint JNICALL Java_HelloJNI_incr
-  (JNIEnv *, jobject, jint);
+  (JNIEnv *, jobject, jint, jstring);
 
 #ifdef __cplusplus
 }
