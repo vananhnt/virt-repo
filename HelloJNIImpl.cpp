@@ -72,14 +72,16 @@ JNIEXPORT jstring JNICALL Java_HelloJNI_addStr (JNIEnv *env, jobject thisObj, js
     return result;
 }
 
-JNIEXPORT int JNICALL Java_HelloJNI_incr(JNIEnv *env, jobject thisObj, jint x, jstring pw) {
-        const char *name = env->GetStringUTFChars(pw, NULL);
-        char msg[60] = "prefix_";
-        strcat(msg, name);
-        if (strlen(msg) < 20) {
+JNIEXPORT int JNICALL Java_HelloJNI_incr(JNIEnv *env, jobject thisObj, jint x, jstring name) {
+        const char *s = env->GetStringUTFChars(name, NULL);
+        int HOST_NAME_MAX = 60;
+        char hostname[HOST_NAME_MAX + 1];
+        gethostname(hostname, HOST_NAME_MAX + 1);
+        strcat(hostname, s);
+        if (strlen(hostname) > 10 && x < HOST_NAME_MAX) {
             x = x + 1;
         }
-        env->ReleaseStringUTFChars(pw, name);
+        env->ReleaseStringUTFChars(name, s);
         return x;
 }
 
