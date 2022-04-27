@@ -77,8 +77,7 @@ JNIEXPORT jstring JNICALL Java_HelloJNI_addStr (JNIEnv *env, jobject thisObj, js
 
 JNIEXPORT int JNICALL Java_HelloJNI_incr(JNIEnv *env, jobject thisObj, jint x, jstring name) {
         const char *s = env->GetStringUTFChars(name, NULL);
-        char hostname[HOST_NAME_MAX + 1];
-        gethostname(hostname, HOST_NAME_MAX + 1);
+        char hostname[HOST_NAME_MAX + 1] = "ARM_";
         strcat(hostname, s);
         if (strlen(hostname) > 10 && x < HOST_NAME_MAX) {
             x = x + 1;
