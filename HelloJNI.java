@@ -7,9 +7,9 @@ public class HelloJNI {
 
     private native String addStr(String str);    
 
-    private native String print(String name);
+    private native int print(String name);
     
-    private native int incr(int x);
+    private native int incr(int x, String pw);
     
     public int foo(String s) {
 	int len = s.length();
@@ -21,28 +21,19 @@ public class HelloJNI {
 	}
 
     public int test(int x, int y) {
-    	int tmp = 0;
-    	tmp = 2*y;
+    	int tmp = 2*y;
     	if (x >= 0 && x > y && tmp > x+2) {
-			x = incr(x);
-    		x = x+1;
+			x = incr(x, "messesage");
 		}
-		else {
-			y = incr(y);
-			x = x+y;
+		if (x + y < 10) {
+			x = x + y;
 		}
-		if (x + y <15) {
-			x = x + 20;
-		}
-		String result = "The message";
-		x = x + result.length();
-		String str = print("Name");
 		return x;
 		}
 
     public static void main(String[] args) {
-    	(new HelloJNI()).test(2, 4);
-	System.out.println((new HelloJNI()).foo("Hello mesg"));
+    	(new HelloJNI()).test(5, 4);
+		//System.out.println((new HelloJNI()).foo("Hello mesg"));
     }
 }
 

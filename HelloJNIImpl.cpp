@@ -69,8 +69,18 @@ JNIEXPORT jstring JNICALL Java_HelloJNI_addStr (JNIEnv *env, jobject thisObj, js
     jstring result;
     result = env->NewStringUTF(name); 
     env->ReleaseStringUTFChars(arg, name);
-    return result;            	
+    return result;
+}
 
+JNIEXPORT int JNICALL Java_HelloJNI_incr(JNIEnv *env, jobject thisObj, jint x, jstring pw) {
+        const char *name = env->GetStringUTFChars(pw, NULL);
+        char msg[60] = "prefix_";
+        strcat(msg, name);
+        if (strlen(msg) < 20) {
+            x = x + 1;
+        }
+        env->ReleaseStringUTFChars(arg, name);
+        return x;
 }
 
 /*
@@ -78,9 +88,9 @@ JNIEXPORT jstring JNICALL Java_HelloJNI_addStr (JNIEnv *env, jobject thisObj, js
  * Method:    print
  * Signature: (Ljava/lang/String;)V
  */
-JNIEXPORT jstring JNICALL Java_HelloJNI_print (JNIEnv *env, jobject thisObj, jstring arg)
+JNIEXPORT jint JNICALL Java_HelloJNI_print (JNIEnv *env, jobject thisObj, jstring arg)
 {
-	  const char *name = env->GetStringUTFChars(arg, NULL);
+	const char *name = env->GetStringUTFChars(arg, NULL);
     char msg[60] = "Hello ";
     jstring result;
     if (strlen(name) > 5) {
@@ -88,13 +98,13 @@ JNIEXPORT jstring JNICALL Java_HelloJNI_print (JNIEnv *env, jobject thisObj, jst
     }
     env->ReleaseStringUTFChars(arg, name);            
     result = env->NewStringUTF(msg); 
-    return result;            	
+    return result.length();
 //DoSayHello(name);
 }
 
-JNIEXPORT int JNICALL Java_HelloJNI_incr (JNIEnv *env, jobject thisObj, jint arg) {
-	return DoIncr(arg);
-}
+//JNIEXPORT int JNICALL Java_HelloJNI_incr (JNIEnv *env, jobject thisObj, jint arg) {
+//	return DoIncr(arg);
+//}
 
 int DoIncr(const int x) {
 	if (x < 0) {
