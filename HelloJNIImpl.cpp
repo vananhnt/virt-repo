@@ -151,13 +151,6 @@ int fast_power(int base, int power) {
     return result;
 }
 
-JNIEXPORT float JNICALL Java_HelloJNI_findSqrt(JNIEnv *env, jobject thisObj, int number) {
-			if (number > 0) {
-			    return Math.sqrt(number);
-
-			}
-			else return -1;
-		}
 
 void DoSayHello(const string &name)
 {
