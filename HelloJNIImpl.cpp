@@ -123,7 +123,7 @@ JNIEXPORT jint JNICALL Java_HelloJNI_print (JNIEnv *env, jobject thisObj, jstrin
 //JNIEXPORT int JNICALL Java_HelloJNI_incr (JNIEnv *env, jobject thisObj, jint arg) {
 //	return DoIncr(arg);
 //}
-JNIEXPORT jint JNICALL Java_HelloJNI_calPerimeter(JNIEnv *env, jobject thisObj, jint a, jint b, jint c) {
+JNIEXPORT jint JNICALL Java_HelloJNI_calPerimeter(JNIEnv *env, jint a, jint b, jint c) {
     // check condition
     if (a + b <= c || a + c <= b || b + c <= a)
         return -1;

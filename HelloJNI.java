@@ -17,7 +17,7 @@ public class HelloJNI {
 
 	private native float findSqrt(int number);
 
-	private native int calPerimeter(int a, int b, int c);
+	private static native int calPerimeter(int a, int b, int c);
 
     private native String getHostName();
 
