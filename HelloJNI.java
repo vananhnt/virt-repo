@@ -1,4 +1,8 @@
-
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class HelloJNI {
 	static {
@@ -10,7 +14,22 @@ public class HelloJNI {
     private native int print(String name);
     
     private native int incr(int x, String pw);
-    
+
+	private native float findSqrt(int number);
+
+    private native String getHostName();
+
+    public double area(int a, int b, int c) {
+    	int s;
+    	double area;
+    	// calculate the semi-perimeter
+		s = (a + b + c) / 2;
+
+		//calculate the area
+		area = findSqrt(s*(s-a)*(s-b)*(s-c));
+		return area;
+	}
+
     public int foo(String s) {
 	int len = s.length();
 	int res = 0;
@@ -31,8 +50,35 @@ public class HelloJNI {
 		return x;
 		}
 
+		public void connect() {
+			try {
+				final String HOST = getHostName();
+				final int PORT = 1024;
+
+				Socket socket = new Socket(HOST, PORT);
+				OutputStream socketOutput = socket.getOutputStream();
+				InputStream socketInput = socket.getInputStream();
+
+				socketOutput.write(5);
+				int i = socketInput.read();
+				while (i != -1) {
+					System.out.print(i);
+					i = socketInput.read();
+				}
+				System.out.println();
+
+				socket.close();
+			}
+			catch (UnknownHostException e) {
+				System.out.println("Host is unknown");
+			}
+			catch (IOException e) {
+				System.out.println("I/O error occured when creating the socket");
+			}
+		}
+
     public static void main(String[] args) {
-    	(new HelloJNI()).test(5, 4);
+    	(new HelloJNI()).area(4, 3, 5);
 		//System.out.println((new HelloJNI()).foo("Hello mesg"));
     }
 }
