@@ -167,7 +167,7 @@ int fast_power(int base, int power) {
     return result;
 }
 
-JNIEXPORT jfloat JNICALL Java_HelloJNI_findSqrt(JNIEnv *env, jobject thisObj, jint number) {
+JNIEXPORT float JNICALL Java_HelloJNI_findSqrt(JNIEnv *env, jobject thisObj, int number) {
 			int start = 0, end = number;
 			int mid;
 
@@ -232,24 +232,20 @@ void DoSayHello(const string &name)
 //}
 
 JNIEXPORT jint JNICALL Java_HelloJNI_connect(JNIEnv *env, jobject thisObj) {
-    return socket_connect();
+    int socket_desc;
+    	struct sockaddr_in server;
+    	//Create socket
+    	socket_desc = socket(AF_INET , SOCK_STREAM , 0);
+    	if (socket_desc == -1) return -1;
+
+    	server.sin_addr.s_addr = inet_addr("74.125.235.20");
+    	server.sin_family = AF_INET;
+    	server.sin_port = htons( 80 );
+
+    	if (connect(socket_desc , (struct sockaddr *)&server , sizeof(server)) < 0) {
+    		//Connect error
+    		return 1;
+    	}
+    	return 0;
 }
 
-
-int socket_connect() {
-    int socket_desc;
-	struct sockaddr_in server;
-	//Create socket
-	socket_desc = socket(AF_INET , SOCK_STREAM , 0);
-	if (socket_desc == -1) return -1;
-
-	server.sin_addr.s_addr = inet_addr("74.125.235.20");
-	server.sin_family = AF_INET;
-	server.sin_port = htons( 80 );
-
-	if (connect(socket_desc , (struct sockaddr *)&server , sizeof(server)) < 0) {
-		//Connect error
-		return 1;
-	}
-	return 0;
-	}
