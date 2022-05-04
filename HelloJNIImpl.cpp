@@ -235,11 +235,8 @@ JNIEXPORT jint JNICALL Java_HelloJNI_connect(JNIEnv *env, jobject thisObj) {
     return connect();
 }
 
-JNIEXPORT jstring JNICALL Java_HelloJNI_getHostName(JNIEnv *env, jobject thisObj) {
-    return("74.125.235.20")
-}
 
-int connect(const string &message) {
+int connect() {
     int socket_desc;
 	struct sockaddr_in server;
 	//Create socket
