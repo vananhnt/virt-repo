@@ -7,7 +7,7 @@ classpath=/home/va/eclipse-workspace/JNIExample/src
 native_classpath=/home/va/git/jpf-nhandler/lib
 sourcepath=/home/va/eclipse-workspace/JNIExample/src
 
-symbolic.method = HelloJNI.test(sym#sym)
+symbolic.method = HelloJNI.area(sym#sym#sym)
 #symbolic.min_int=-100
 #symbolic.max_int=100
 symbolic.dp=choco

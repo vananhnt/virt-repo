@@ -10,6 +10,7 @@
 #include <jni.h>
 #include <sys/time.h>
 #include <string.h>
+#include <math.h>
 #include<sys/socket.h>
 #include<arpa/inet.h>	//inet_addr
 #include <stdint.h>
@@ -23,30 +24,7 @@ using std::unique_ptr;
 using std::shared_ptr;
 using std::cout;
 using std::endl;
-// Constants are the integer part of the sines of integers (in radians) * 2^32.
-const uint32_t k[64] = {
-0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee ,
-0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501 ,
-0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be ,
-0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821 ,
-0xf61e2562, 0xc040b340, 0x265e5a51, 0xe9b6c7aa ,
-0xd62f105d, 0x02441453, 0xd8a1e681, 0xe7d3fbc8 ,
-0x21e1cde6, 0xc33707d6, 0xf4d50d87, 0x455a14ed ,
-0xa9e3e905, 0xfcefa3f8, 0x676f02d9, 0x8d2a4c8a ,
-0xfffa3942, 0x8771f681, 0x6d9d6122, 0xfde5380c ,
-0xa4beea44, 0x4bdecfa9, 0xf6bb4b60, 0xbebfbc70 ,
-0x289b7ec6, 0xeaa127fa, 0xd4ef3085, 0x04881d05 ,
-0xd9d4d039, 0xe6db99e5, 0x1fa27cf8, 0xc4ac5665 ,
-0xf4292244, 0x432aff97, 0xab9423a7, 0xfc93a039 ,
-0x655b59c3, 0x8f0ccc92, 0xffeff47d, 0x85845dd1 ,
-0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1 ,
-0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391 };
 
-// r specifies the per-round shift amounts
-const uint32_t r[] = {7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
-                      5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20,
-                      4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
-                      6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21};
 
 // leftrotate function definition
 #define LEFTROTATE(x, c) (((x) << (c)) | ((x) >> (32 - (c))))
@@ -145,7 +123,13 @@ JNIEXPORT jint JNICALL Java_HelloJNI_print (JNIEnv *env, jobject thisObj, jstrin
 //JNIEXPORT int JNICALL Java_HelloJNI_incr (JNIEnv *env, jobject thisObj, jint arg) {
 //	return DoIncr(arg);
 //}
-
+JNIEXPORT jint JNICALL Java_HelloJNI_checkTriangle(JNIEnv *env, jobject thisObj, jint a, jint b, jint c) {
+    // check condition
+    if (a + b <= c || a + c <= b || b + c <= a)
+        return -1;
+    else
+        return (a + b + c) ;
+}
 int DoIncr(const int x) {
 	if (x < 0) {
 		return -x;
@@ -168,53 +152,11 @@ int fast_power(int base, int power) {
 }
 
 JNIEXPORT float JNICALL Java_HelloJNI_findSqrt(JNIEnv *env, jobject thisObj, int number) {
-			int start = 0, end = number;
-			int mid;
+			if (number > 0) {
+			    return Math.sqrt(number);
 
-			// To store the answer
-			float ans = 0;
-
-			// To find integral part of square
-			// root of number
-			while (start <= end) {
-				// Find mid
-				mid = (start + end) / 2;
-
-				// If number is perfect square
-				// then break
-				if (mid * mid == number) {
-					ans = mid;
-					break;
-				}
-				// Increment start if integral
-				// part lies on right side
-				// of the mid
-				if (mid * mid < number) {
-					//first start value should be added to answer
-					ans=start;
-					//then start should be changed
-					start = mid + 1;
-				}
-				// Decrement end if integral part
-				// lies on the left side of the mid
-				else {
-					end = mid - 1;
-				}
 			}
-			// To find the fractional part
-			// of square root upto 5 decimal
-			float increment = (float) 0.1;
-			for (int i = 0; i < 5; i++) {
-				while (ans * ans <= number) {
-					ans += increment;
-				}
-
-				// Loop terminates,
-				// when ans * ans > number
-				ans = ans - increment;
-				increment = increment / 10;
-			}
-			return ans;
+			else return -1;
 		}
 
 void DoSayHello(const string &name)

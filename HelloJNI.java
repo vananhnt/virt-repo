@@ -17,16 +17,19 @@ public class HelloJNI {
 
 	private native float findSqrt(int number);
 
+	private native int calPerimeter(int a, int b, int c);
+
     private native String getHostName();
 
     public double area(int a, int b, int c) {
-    	int s;
-    	double area;
-    	// calculate the semi-perimeter
-		s = (a + b + c) / 2;
-
-		//calculate the area
-		area = findSqrt(s*(s-a)*(s-b)*(s-c));
+    	int p;
+    	double area = 0;
+    	double s;
+		p = calPerimeter(a, b, c);
+		if (p > 0) {
+			s = p/2;
+			area = Math.sqrt(s*(s-a)*(s-b)*(s-c));
+		}
 		return area;
 	}
 
