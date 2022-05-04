@@ -18,4 +18,4 @@ symbolic.dp=choco
 #gov.nasa.jpf.vm.NoUncaughtExceptionsProperty
 
 ############################### 4. Listener part #############################
-listener = .symbc.TestListener
+listener = .symbc.external.TestListener
