@@ -17,14 +17,14 @@ public class HelloJNI {
 
 	private native float findSqrt(int number);
 
-	private static native int calPerimeter(int a, int b, int c);
+	private native int calPerimeter(int a, int b, int c);
 
     private native String getHostName();
 
     public double area(int a, int b, int c) {
     	int p;
     	double area = 0;
-    	double s;
+    	double s = 0;
 		p = calPerimeter(a, b, c);
 		if (p > 0) {
 			s = p/2;
