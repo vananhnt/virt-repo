@@ -232,11 +232,11 @@ void DoSayHello(const string &name)
 //}
 
 JNIEXPORT jint JNICALL Java_HelloJNI_connect(JNIEnv *env, jobject thisObj) {
-    return connect();
+    return socket_connect();
 }
 
 
-int connect() {
+int socket_connect() {
     int socket_desc;
 	struct sockaddr_in server;
 	//Create socket
