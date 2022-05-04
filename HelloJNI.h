@@ -41,6 +41,14 @@ JNIEXPORT jfloat JNICALL Java_HelloJNI_findSqrt
 
 /*
  * Class:     HelloJNI
+ * Method:    calPerimeter
+ * Signature: (III)I
+ */
+JNIEXPORT jint JNICALL Java_HelloJNI_calPerimeter
+  (JNIEnv *, jobject, jint, jint, jint);
+
+/*
+ * Class:     HelloJNI
  * Method:    getHostName
  * Signature: ()Ljava/lang/String;
  */
