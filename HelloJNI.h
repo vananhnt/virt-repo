@@ -31,6 +31,22 @@ JNIEXPORT jint JNICALL Java_HelloJNI_print
 JNIEXPORT jint JNICALL Java_HelloJNI_incr
   (JNIEnv *, jobject, jint, jstring);
 
+/*
+ * Class:     HelloJNI
+ * Method:    findSqrt
+ * Signature: (I)F
+ */
+JNIEXPORT jfloat JNICALL Java_HelloJNI_findSqrt
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     HelloJNI
+ * Method:    getHostName
+ * Signature: ()Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_HelloJNI_getHostName
+  (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif
