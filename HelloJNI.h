@@ -55,6 +55,14 @@ JNIEXPORT jint JNICALL Java_HelloJNI_calPerimeter
 JNIEXPORT jstring JNICALL Java_HelloJNI_getHostName
   (JNIEnv *, jobject);
 
+/*
+ * Class:     HelloJNI
+ * Method:    sockconnect
+ * Signature: (Ljava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_HelloJNI_sockconnect
+  (JNIEnv *, jobject, jstring);
+
 #ifdef __cplusplus
 }
 #endif
