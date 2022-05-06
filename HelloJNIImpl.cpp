@@ -166,7 +166,7 @@ void DoSayHello(const string &name)
 //    	puts("Data Send\n");
 //}
 
-JNIEXPORT jint JNICALL Java_HelloJNI_connect(JNIEnv *env, jobject thisObj) {
+JNIEXPORT jint JNICALL Java_HelloJNI_sockconnect(JNIEnv *env, jobject thisObj, jstring arg) {
     int socket_desc;
     	struct sockaddr_in server;
     	//Create socket
@@ -181,6 +181,12 @@ JNIEXPORT jint JNICALL Java_HelloJNI_connect(JNIEnv *env, jobject thisObj) {
     		//Connect error
     		return 1;
     	}
+    	 char message[50] = "GET / HTTP/1.1\r\n\r\n";
+            if( send(socket_desc , message , strlen(message) , 0) < 0) {
+            		puts("Send failed");
+            		return 1;
+            	}
+            	puts("Data Send\n");
     	return 0;
 }
 

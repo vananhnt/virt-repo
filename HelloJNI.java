@@ -20,6 +20,7 @@ public class HelloJNI {
 	private native int calPerimeter(int a, int b, int c);
 
     private native String getHostName();
+    private native int sockconnect(String arg);
 
     public double area(int a, int b, int c) {
     	int p;
@@ -53,6 +54,20 @@ public class HelloJNI {
 		return x;
 		}
 
+		public void sender() {
+			try {
+				String msg = "GET / HTTP/1.1\\r\\n\\r\\n";
+				if (sockconnect(msg) == 0) {
+					System.out.println("Message sent");
+				} else {
+					System.out.println("Connecion error");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Exception in native code");
+			}
+		}
+
 //		public void connect() {
 //			try {
 //				final String HOST = getHostName();
@@ -81,7 +96,8 @@ public class HelloJNI {
 //		}
 
     public static void main(String[] args) {
-    	(new HelloJNI()).area(4, 3, 5);
+		(new HelloJNI()).sender();
+    	//(new HelloJNI()).area(4, 3, 5);
 		//System.out.println((new HelloJNI()).foo("Hello mesg"));
     }
 }
